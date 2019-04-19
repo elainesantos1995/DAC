@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+<f:metadata>
+	<f:viewParam name="item" value="#{itemEdit.itemBiblioteca}" />
+	<f:viewAction action="#{itemEdit.init()}" />
+	
+	</f:metadata>
+
+<h:head>
+	<title>Adicionar Item</title>
+	<style>
+	
+	body{background-color: #fff2cc;}</style>
+</h:head>
+
+<h:body>
+
+	<h:panelGrid columns="1" style="width : 100%; text-align:center" border="1">
+		<h:link value="Biblioteca" outcome="/index.xhtml" />
+	</h:panelGrid>
+	
+	<h:panelGrid columns="2" style="width : 100%; text-align:center" border="1">
+		<h:link outcome="/paginas/item/index.xhtml" value="Pagina Principal de Item" />
+		<h:link outcome="/paginas/item/item_edit.xhtml" value="Gerenciamento de Itens" />
+	</h:panelGrid>
+
+	<h:messages />
+
+	<h:form id="formEdit">
+
+		<h:panelGrid columns="2">
+			<f:facet name="header">ItemBibloteca</f:facet>
+
+			<h:outputLabel value="Id:" rendered="#{itemEdit.edicaoItem}" />
+			<h:outputLabel value="#{ItemEdit.itemBiblioteca.id}" rendered="#{itemEdit.edicaoItem}" />
+<!-- 
+			<h:outputLabel for="tipo" value="Tipo:" />
+			<h:inputText id="tipo" value="#{itemEdit.itemBiblioteca.tipo}" label="Tipo do item" required="true" />
+ -->
+			<h:outputLabel for="titulo" value="Titulo:" />
+			<h:inputText id="titulo" value="#{itemEdit.itemBiblioteca.titulo}" label="Título" required="true" />
+
+			<h:outputLabel for="descricao" value="Descricao:" />
+			<h:inputText id="descricao" value="#{itemEdit.itemBiblioteca.descricao}" label="Descrição" required="true" />
+
+			<h:outputLabel for="editora" value="Editora:" />
+			<h:inputText id="editora" value="#{itemEdit.itemBiblioteca.editora}" label="Editora" required="true" />
+
+			<h:outputLabel for="isbn" value="ISBN:" />
+			<h:inputText id="isbn" value="#{itemEdit.itemBiblioteca.isbn}" label="ISBN" required="true" />
+
+			<h:outputLabel for="numeroPaginas" value="Numero de Páginas:" />
+			<h:inputText id="numeroPaginas" value="#{itemEdit.itemBiblioteca.numeroPaginas}" label="numeroPaginas" required="true" />
+
+			<h:outputLabel for="dataPublicacao" value="Data de Publicação:" />
+			<h:inputText id="dataPublicacao" value="#{itemEdit.itemBiblioteca.dataPublicacao}" label="Data de Publicação" required="true">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
+			
+			<h:outputLabel for="tags" value="Tags:" />
+			<h:inputText id="tags" value="#{itemEdit.itemBiblioteca.tags}" label="Text" />
+		
+		</h:panelGrid>
+
+		<h:panelGrid columns="2">
+			<h:commandButton id="botaoSubmeter" action="#{itemEdit.salvarItem}" value="Salvar" />
+			<h:button id="botaoCancelar" outcome="index.xhtml" value="Cancelar" />
+		</h:panelGrid>	
+			
+	</h:form>
+
+	<h:panelGrid columns="1" style="width : 100%; text-align:center" border="1">
+		<h:outputText value="Biblioteca - v1.0" />
+	</h:panelGrid>
+
+</h:body>
+</html>

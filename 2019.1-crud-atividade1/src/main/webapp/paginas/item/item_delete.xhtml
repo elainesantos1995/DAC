@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:metadata>
+	<f:viewParam name="item" value="#{itemDelete.item}" required="true" requiredMessage="Parâmetro 'item' é obrigatório na URL!" />
+</f:metadata>
+
+<h:head>
+	<title>Item delete</title>
+	<style>
+	
+	body{background-color: #fff2cc;}</style>
+</h:head>
+
+<h:body>
+
+	<h:panelGrid columns="1" style="width : 100%; text-align:center" border="1">
+		<h:link value="My App" outcome="/index.xhtml" />
+	</h:panelGrid>
+	<h:panelGrid columns="6" style="width : 100%; text-align:center" border="1">
+		<h:link outcome="/paginas/user/index.xhtml" value="Página principal de itens" />
+		<h:link outcome="/paginas/user/user_edit.xhtml" value="Adicionar item" />
+	</h:panelGrid>
+
+	<h:messages />
+	
+	<br/>
+
+	<h:form id="formDelete">
+		<h:outputText
+			value="Você deseja deletar: #{itemDelete.item.titulo}? " />
+		<h:commandButton action="#{itemDelete.delete}" value="Deletar" />
+		<h:button outcome="index.xhtml" value="Cancelar" />
+	</h:form>
+
+	<h:panelGrid columns="1" style="width : 100%; text-align:center" border="1">
+		<h:outputText value="Biblioteca - v1.0" />
+	</h:panelGrid>
+</h:body>
+</html>

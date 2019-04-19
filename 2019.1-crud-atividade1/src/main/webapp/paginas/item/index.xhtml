@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Gerenciamento de Itens</title>
+	<style>
+	
+	body{background-color: #fff2cc;}</style>
+	
+	
+</h:head>
+
+<h:body>
+
+	<h:panelGrid columns="1" style="width : 100%; text-align:center" border="1">
+		<h:link value="Biblioteca" outcome="/index.xhtml" />
+	</h:panelGrid>
+	<h:panelGrid columns="2" style="width : 100%; text-align:center" border="1">
+		<h:link outcome="/paginas/item/index.xhtml" value="Página Principal de itens" />
+		<h:link outcome="/paginas/item/item_edit.xhtml" value="Adicionar item" />
+	</h:panelGrid>
+
+	<h:messages />
+	
+	<h:form id="formFilter">
+	
+	<br/>
+			
+		<h:panelGrid columns="2">
+			<f:facet name="caption">
+			<p align="center">
+				<h:outputText value="Filtros"/>
+			</p>
+			</f:facet>
+					
+			<f:facet name="header">
+				<h:outputText value="Item"/>
+			</f:facet>
+
+			<h:outputLabel value="Título: " for="tituloFilter" />
+			<h:inputText id="tituloFilter" value="#{managerItem.itemFilter.titulo}" label="Titulo" style="width:350px" />
+
+			<h:outputLabel value="Tipo: " for="tipoFilter" />
+			<h:inputText id="tipoFilter" value="#{managerItem.itemFilter.tipo}" label="Tipo" style="width:350px" />
+
+			<h:outputLabel value="Número de Páginas: " for="numeroPaginasFilter" />
+			<h:inputText id="numeroPaginasFilter" value="#{managerItem.itemFilter.numeroPaginas}" label="Numero de Páginas" style="width:350px" />
+			
+				
+			<h:commandButton id="btnFiltrarBotao" value="Procurar" action="#{managerItem.filtrar()}" />
+			<h:commandButton  id="btnLimparBotao" value="Limpar" action="#{manageItem.limpar()}" />
+		
+		</h:panelGrid>
+
+	</h:form>
+	
+	<br/>
+	
+	<h:dataTable id="dataTableItens" border="1" var="item" value="#{managerItem.itens}">
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			<h:outputText value="#{item.id}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Tipo</f:facet>
+			<h:outputText value="#{item.tipo}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Titulo</f:facet>
+			<h:outputText value="#{item.titulo}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Descricao</f:facet>
+			<h:outputText value="#{item.descricao}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Editora</f:facet>
+			<h:outputText value="#{item.editora}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">ISBN</f:facet>
+			<h:outputText value="#{item.isbn}" />
+		</h:column>		
+		<h:column>
+			<f:facet name="header">Numero de Paginas</f:facet>
+			<h:outputText value="#{item.numeroPaginas}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Data Publicacao</f:facet>
+			<h:outputText value="#{item.dataPublicacao}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Operações</f:facet>
+			<h:link outcome="item_edit.xhtml" value="Editar Item">
+				<f:param name="item" value="#{item.id}" />
+			</h:link>
+			<h:outputText value=" "/>
+			<h:link outcome="item_delete.xhtml" value="Deletar Item">
+				<f:param name="item" value="#{item.id}"/>
+			</h:link>
+		</h:column>
+	</h:dataTable>
+	
+		<br/>
+
+	<h:panelGrid columns="1" style="width : 100%; text-align:center" border="1">
+		<h:outputText value="Biblioteca - v1.0" />
+	</h:panelGrid>
+
+</h:body>
+</html>
